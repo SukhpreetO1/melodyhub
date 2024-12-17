@@ -1,0 +1,40 @@
+services:
+  melodyhub_frontend:
+    build:
+      context: ./frontend
+      dockerfile: ./Dockerfile
+    container_name: melodyhub_frontend
+    image: melodyhub_frontend
+    restart: always
+    volumes:
+      - ./frontend:/var/www/html/personal/melodyhub/frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - melodyhub_backend
+    networks:
+      - mysql_database
+    env_file:
+      - ./frontend/.env  
+
+  melodyhub_backend:
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
+    container_name: melodyhub_backend
+    image: melodyhub_backend
+    restart: always
+    volumes:
+      - ./backend:/var/www/html/personal/melodyhub/backend
+    ports:
+      - "6006:6006"
+    environment:
+      - MONGO_URI=${MONGO_URI}
+    networks:
+      - mysql_database
+    env_file:
+      - ./backend/.env  
+
+networks:
+  mysql_database:
+    external: true 
