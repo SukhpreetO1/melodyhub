@@ -61,10 +61,13 @@ export const loginUser = TryCatch(async (req, res) => {
         message: 'Password do not match with our database.'
     })
 
+    const roleName = await Role.findById(user.role_id);
+
     GenerateToken(user._id, res);
 
     res.status(200).json({
         user, 
+        roleName: roleName.name, 
         message : 'User logged in successfully'
     })
 });

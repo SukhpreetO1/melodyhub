@@ -7,3 +7,6 @@ bcrypt
 cookie-parser 
 dotenv
 nodemon
+concurrently
+cors
+fs-extra

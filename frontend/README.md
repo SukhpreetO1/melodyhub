@@ -11,3 +11,10 @@ Frontend packages
 
 react-router-dom 
 react-icons
+react-password-checklist
+@fortawesome/fontawesome-svg-core 
+@fortawesome/free-regular-svg-icons 
+@fortawesome/react-fontawesome 
+@fortawesome/react-fontawesome@latest
+react-toastify
+axios
