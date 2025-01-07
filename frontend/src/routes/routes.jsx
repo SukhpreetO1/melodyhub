@@ -8,11 +8,13 @@ import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import axios from "axios";
 
 // importing pages
+import Homepage from '../pages/Homepage.jsx';
 import Login from '../pages/Login.jsx';
 import Signup from '../pages/Signup.jsx';
+import ForgotPassword from '../pages/ForgotPassword.jsx';
 
 // importing interfaces
-import { SubmitButtonPropTypes, InputFieldPropTypes, PasswordFieldPropTypes } from "../types/propTypes.jsx";
+import { AuthRoutePropType, SubmitButtonPropTypes, InputFieldPropTypes, PasswordFieldPropTypes } from "../types/propTypes.jsx";
 
 // importing components
 import PasswordField from '../components/PasswordField.jsx';
@@ -26,7 +28,7 @@ import { validate_signup_submit_form } from "../utils/js/signup.js";
 import { validate_forgot_password_submit_form } from "../utils/js/forgot_password.js";
 
 // importing MongoDB URL's
-import { MONGODB_API_LOGIN, MONGODB_API_SIGNUP, MONGODB_API_PROFILE, MONGODB_API_LOGOUT, MONGODB_API_ERROR, MONGODB_API_PROTETED_ROUTE } from "./mongodb.jsx"
+import { BACKEND_LOGIN, BACKEND_SIGNUP, BACKEND_PROFILE, BACKEND_LOGOUT, BACKEND_FORGOT_PASSWORD, BACKEND_ERROR, BACKEND_PROTETED_ROUTE } from "./backend.jsx"
 
 // importing redirection routes
 import { USERS_LOGIN, USERS_SIGNUP, USERS_FORGOT_PASSWORD, USERS_HOMEPAGE, ADMIN_HOMEPAGE } from "./redirectionRoutes.jsx"
@@ -51,8 +53,11 @@ export {
     faEye, 
     faEyeSlash, 
     axios, 
+    Homepage, 
     Login, 
     Signup, 
+    ForgotPassword, 
+    AuthRoutePropType, 
     SubmitButtonPropTypes, 
     InputFieldPropTypes, 
     PasswordFieldPropTypes, 
@@ -62,12 +67,13 @@ export {
     validate_login_submit_form, 
     validate_signup_submit_form, 
     validate_forgot_password_submit_form, 
-    MONGODB_API_LOGIN, 
-    MONGODB_API_SIGNUP, 
-    MONGODB_API_PROFILE, 
-    MONGODB_API_LOGOUT, 
-    MONGODB_API_ERROR, 
-    MONGODB_API_PROTETED_ROUTE, 
+    BACKEND_LOGIN, 
+    BACKEND_SIGNUP, 
+    BACKEND_PROFILE, 
+    BACKEND_LOGOUT, 
+    BACKEND_FORGOT_PASSWORD, 
+    BACKEND_ERROR, 
+    BACKEND_PROTETED_ROUTE, 
     USERS_LOGIN, 
     USERS_SIGNUP, 
     USERS_FORGOT_PASSWORD, 

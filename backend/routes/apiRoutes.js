@@ -1,8 +1,8 @@
-import { express, allError } from "./allRoutes.js";
+import { express, allError, protectedRoutesController } from "./allRoutes.js";
 
 const router = express.Router();
 
-router.post('/allErrors', apiRoutesController);
-router.get('/protected-route', apiRoutesController);
+router.post('/allErrors', allError);
+router.get('/protected-route', protectedRoutesController);
 
 export default router;

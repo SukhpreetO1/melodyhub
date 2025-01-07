@@ -31,3 +31,7 @@ export const PasswordFieldPropTypes = {
   onChange: PropTypes.func.isRequired,
   error: PropTypes.string
 };
+
+export const AuthRoutePropType = {
+  children: PropTypes.any
+}

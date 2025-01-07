@@ -1,6 +1,12 @@
 import TryCatch from "../utils/TryCatch.js";
 import { bcrypt, GenerateToken, Role, User } from "../routes/allRoutes.js";
 
+export const connectedBackend = (req, res) => {
+    return res.json({
+        message: "Backend is working."
+    });
+};
+
 export const registerUser = TryCatch(async (req, res) => {
     const { name, email, mobile_number, date_of_birth, password, confirm_password } = req.body;
 
@@ -84,8 +90,21 @@ export const logoutUser = TryCatch(async (req, res) => {
     });
 });
 
-export const test = (req, res) => {
-    return res.json({
-        message: "test."
-    });
-};
+export const forgotPassword = TryCatch( async (req, res) => {
+    const { email } = req.body;
+    let user;
+    let authType;
+
+    if (email) {
+        authType = 'email address';
+        user = await User.findOne({ email });
+    }
+
+    if (!user) return res.status(400).json({
+        message: `User not found with this email address.`
+    })
+
+    res.status(200).json({
+        message: 'Email sent successfully.'
+    })
+});

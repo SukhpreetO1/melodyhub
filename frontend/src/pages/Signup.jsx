@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { InputField, PasswordField, SubmitButton, validate_signup_submit_form, axios, MONGODB_API_SIGNUP, toast, NavLink, USERS_LOGIN, useNavigate, USERS_HOMEPAGE, ADMIN_HOMEPAGE, MONGODB_API_ERROR } from "../routes/routes.jsx";
+import { InputField, PasswordField, SubmitButton, validate_signup_submit_form, axios, BACKEND_SIGNUP, toast, NavLink, USERS_LOGIN, useNavigate, USERS_HOMEPAGE, ADMIN_HOMEPAGE, BACKEND_ERROR } from "../routes/routes.jsx";
 
 const Signup = () => {
   const [formData, setFormData] = useState({ name: '', email: '', mobile_number: '', password: '', confirm_password: '' });
@@ -22,7 +22,7 @@ const Signup = () => {
     if (Object.keys(validation_errors).length === 0) {
       try {
         setDisabled(true);
-        const response = await axios.post(MONGODB_API_SIGNUP, formData);
+        const response = await axios.post(BACKEND_SIGNUP, formData);
         setDisabled(false);
         toast.success("New account created successfully.");
         response.data.roleName == "User" ? navigate(USERS_HOMEPAGE) : navigate(ADMIN_HOMEPAGE);
@@ -32,10 +32,10 @@ const Signup = () => {
         toast.error("Something went wrong. Please try again after somtime.");
         const errorData = {
           error: err.message,
-          message: "Error while signup.",
+          message: "Signup Error : Something went wrong. Please try again after somtime. " . error,
           timestamp: new Date().toISOString()
         };
-        axios.post(MONGODB_API_ERROR, errorData);
+        axios.post(BACKEND_ERROR, errorData);
       }
     } else {
       setErrors(validation_errors);

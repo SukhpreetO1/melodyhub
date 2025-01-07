@@ -1,4 +1,4 @@
-import { axios, useNavigate, MONGODB_API_PROTETED_ROUTE } from "../routes/routes.jsx";
+import { axios, useNavigate, BACKEND_PROTETED_ROUTE, AuthRoutePropType } from "../routes/routes.jsx";
 import { useEffect, useState } from "react";
 
 const AuthRoute = ({ children }) => {
@@ -8,18 +8,16 @@ const AuthRoute = ({ children }) => {
   useEffect(() => {
     const checkToken = async () => {
       try {
-        const response = await axios.get(MONGODB_API_PROTETED_ROUTE, {
+        const response = await axios.get(BACKEND_PROTETED_ROUTE, {
           credentials: 'include',
         });
-        console.log(response);
         
-        if (response.ok) {
+        if (response.status == 200) {
           setHasToken(true);
         } else {
           setHasToken(false);
         }
       } catch (error) {
-        console.error("Error checking token:", error);
         setHasToken(false);
       }
     };
@@ -35,5 +33,7 @@ const AuthRoute = ({ children }) => {
 
   return !hasToken ? children : null;
 };
+
+AuthRoute.propTypes = AuthRoutePropType;
 
 export default AuthRoute;

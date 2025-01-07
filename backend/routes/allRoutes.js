@@ -7,6 +7,8 @@ import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
 import cors from 'cors';
 import fs from 'fs';
+import path from 'path';
+import * as fileSystem from 'fs/promises';
 
 // importing database
 import connectMongoDb from '../database/mongoDb.js'
@@ -16,7 +18,7 @@ import User from "../models/User.js";
 import Role from "../models/Role.js";
 
 // importing controllers
-import { registerUser, loginUser, userProfile , logoutUser, test } from "../controllers/userController.js";
+import { registerUser, loginUser, userProfile , logoutUser, connectedBackend, forgotPassword } from "../controllers/userController.js";
 import { allError, protectedRoutesController } from "../controllers/apiRoutesController.js";
 
 // import middleware
@@ -40,14 +42,19 @@ export {
     cookieParser, 
     cors, 
     fs, 
+    path, 
+    fileSystem, 
     connectMongoDb, 
     User, 
     Role, 
     registerUser, 
     loginUser, 
     userProfile, 
+    forgotPassword, 
     logoutUser, 
-    test, 
+    connectedBackend, 
+    allError, 
+    protectedRoutesController,
     apiRoutes, 
     isAuth, 
     RoleData, 

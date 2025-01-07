@@ -1,8 +1,9 @@
+/* eslint-disable no-undef */
+import dotenv from 'dotenv';
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import dotenv from 'dotenv'
 
-dotenv.config()
+dotenv.config();
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -10,7 +11,8 @@ export default defineConfig({
   server: {
     proxy: {
       "/api/" : {
-        target : process.env.MONGODB_URL,
+        target : process.env.VITE_BACKEND_URL,
+        changeOrigin: true,
       }
     }
   }

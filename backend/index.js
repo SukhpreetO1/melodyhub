@@ -16,6 +16,7 @@ const port = process.env.PORT || 3006;
 
 app.use('/api/user', userRoutes);
 app.use('/api', apiRoutes);
+app.use('/', userRoutes);
 
 const serverStart = (async ()=>{
     try {
