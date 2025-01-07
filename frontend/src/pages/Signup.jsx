@@ -32,7 +32,7 @@ const Signup = () => {
         toast.error("Something went wrong. Please try again after somtime.");
         const errorData = {
           error: err.message,
-          message: "Signup Error : Something went wrong. Please try again after somtime. " . error,
+          message: `Signup Error : Something went wrong. Please try again after somtime. ${err.message}`,
           timestamp: new Date().toISOString()
         };
         axios.post(BACKEND_ERROR, errorData);

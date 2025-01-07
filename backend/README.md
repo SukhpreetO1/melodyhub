@@ -10,3 +10,4 @@ nodemon
 concurrently
 cors
 fs-extra
+nodemailer

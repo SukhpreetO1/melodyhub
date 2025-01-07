@@ -1,5 +1,6 @@
 import TryCatch from "../utils/TryCatch.js";
-import { bcrypt, GenerateToken, Role, User } from "../routes/allRoutes.js";
+import { sendPasswordResetEmail } from "../utils/MailSender.js";
+import { bcrypt, GenerateToken, jwt, Role, User } from "../routes/allRoutes.js";
 
 export const connectedBackend = (req, res) => {
     return res.json({
@@ -104,7 +105,35 @@ export const forgotPassword = TryCatch( async (req, res) => {
         message: `User not found with this email address.`
     })
 
-    res.status(200).json({
-        message: 'Email sent successfully.'
-    })
+    try {
+        const token = jwt.sign({ id: user._id.toString().slice(0, 8) }, process.env.JWT_SECRET, {
+            expiresIn: '10m',
+        });        
+        const link = `${process.env.FRONTEND_URL}reset_password?token=${token}`;
+        const subject = 'Password Reset Request';
+        const emailBody = `Hello ${user.name},\n\n
+            We received a request to reset your password for your account. If you made this request, please follow the link below to securely reset your password.\n\n
+            Reset Your Password: ${link}\n\n
+            This link will expire in 10 minutes, so please make sure to reset your password before then.\n\n
+            If you didn't request a password reset, no action is needed. Your password will remain the same, and your account will remain secure.\n\n
+            If you have any concerns or believe this request was made in error, please reach out to our support team immediately.\n\n
+            Thank you,\n
+            The ${process.env.APP_NAME} Team`;
+
+        const emailSent = await sendPasswordResetEmail(email, emailBody, subject);
+
+        if (emailSent) {
+            return res.status(200).json({
+                message: 'Password reset email sent successfully.',
+            });
+        }
+
+        return res.status(500).json({
+            message: 'Error sending password reset email.',
+        });
+    } catch (error) {
+        return res.status(500).json({
+            message: error.message || 'An unexpected error occurred.',
+        });
+    }
 });

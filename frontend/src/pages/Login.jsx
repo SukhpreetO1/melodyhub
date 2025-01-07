@@ -32,7 +32,7 @@ const Login = () => {
         toast.error("Invalid credential.");
         const errorData = {
           error: err.message,
-          message: "Login Error : Invalid credential. " . error,
+          message: `Login Error : Invalid credential. ${err.message}`,
           timestamp: new Date().toISOString()
         };
         axios.post(BACKEND_ERROR, errorData);

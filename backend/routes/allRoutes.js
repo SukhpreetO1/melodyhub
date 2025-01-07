@@ -9,6 +9,7 @@ import cors from 'cors';
 import fs from 'fs';
 import path from 'path';
 import * as fileSystem from 'fs/promises';
+import nodemailer from 'nodemailer';
 
 // importing database
 import connectMongoDb from '../database/mongoDb.js'
@@ -44,6 +45,7 @@ export {
     fs, 
     path, 
     fileSystem, 
+    nodemailer, 
     connectMongoDb, 
     User, 
     Role, 

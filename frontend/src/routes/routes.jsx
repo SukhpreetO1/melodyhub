@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 // importing react routes
 import { BrowserRouter, Routes, Route, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { StrictMode, React } from 'react';

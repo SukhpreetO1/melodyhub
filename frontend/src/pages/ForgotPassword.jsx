@@ -32,7 +32,7 @@ const ForgotPassword = () => {
         toast.error("Email not found. Please check the email and try again.");
         const errorData = {
           error: err.message,
-          message: "Forgot-Password : Email not found. Please check the email and try again. " . error,
+          message: `Forgot-Password : Email not found. Please check the email and try again. ${err.message}`,
           timestamp: new Date().toISOString()
         };
         axios.post(BACKEND_ERROR, errorData);
