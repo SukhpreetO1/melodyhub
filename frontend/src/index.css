@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import 'flowbite';
+@import 'tippy.js/dist/tippy.css';
 
 * {
     padding: 0;

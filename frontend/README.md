@@ -18,3 +18,6 @@ react-password-checklist
 @fortawesome/react-fontawesome@latest
 react-toastify
 axios
+flowbite
+dotenv
+js-cookie

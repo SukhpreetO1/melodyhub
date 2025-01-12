@@ -10,9 +10,9 @@ const Navbar = () => {
 
     return (
         <nav className="static top-0 w-full">
-            <div className="flex flex-wrap items-center justify-between mx-auto p-4 pt-2">
+            <div className="flex flex-wrap items-center justify-between mx-auto p-4 pt-2 bg-[#000]">
                 <NavLink to={USERS_HOMEPAGE} className="flex items-center space-x-3 rtl:space-x-reverse">
-                    <img src={LOGO_URL} className="h-16 rounded-full w-16" alt="Flowbite Logo" />
+                    <img src={LOGO_URL} className="h-12 rounded-full w-12" alt="Flowbite Logo" />
                 </NavLink>
                 <div className="flex md:order-1">
                     <span className="w-11 bg-[#1f1f1f] rounded-full mr-2 text-center cursor-pointer pt-2 hidden md:block">
