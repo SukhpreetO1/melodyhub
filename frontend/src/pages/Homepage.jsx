@@ -1,9 +1,9 @@
-import React from 'react'
+import { Navbar } from "../routes/routes.jsx";
 
 const Homepage = () => {
   return (
     <div>
-      Homepage
+      <Navbar />
     </div>
   )
 }

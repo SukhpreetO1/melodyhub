@@ -6,6 +6,7 @@ import PasswordChecklist from "react-password-checklist";
 import { ToastContainer, toast } from "react-toastify";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
+import { faHouse, faInbox } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 // importing pages
@@ -13,6 +14,7 @@ import Homepage from '../pages/Homepage.jsx';
 import Login from '../pages/Login.jsx';
 import Signup from '../pages/Signup.jsx';
 import ForgotPassword from '../pages/ForgotPassword.jsx';
+import Navbar from '../pages/Navbar.jsx'
 
 // importing interfaces
 import { AuthRoutePropType, SubmitButtonPropTypes, InputFieldPropTypes, PasswordFieldPropTypes } from "../types/propTypes.jsx";
@@ -53,11 +55,14 @@ export {
     FontAwesomeIcon, 
     faEye, 
     faEyeSlash, 
+    faHouse, 
+    faInbox, 
     axios, 
     Homepage, 
     Login, 
     Signup, 
     ForgotPassword, 
+    Navbar, 
     AuthRoutePropType, 
     SubmitButtonPropTypes, 
     InputFieldPropTypes, 
@@ -82,3 +87,4 @@ export {
     ADMIN_HOMEPAGE, 
     AuthRoute, 
 };
+export const LOGO_URL = '../../public/images/logo.png';

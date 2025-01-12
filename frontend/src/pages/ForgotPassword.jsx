@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { InputField, SubmitButton, validate_forgot_password_submit_form, axios, BACKEND_FORGOT_PASSWORD, toast, NavLink, USERS_LOGIN, useNavigate, BACKEND_ERROR } from "../routes/routes.jsx";
+import { InputField, SubmitButton, validate_forgot_password_submit_form, axios, BACKEND_FORGOT_PASSWORD, toast, NavLink, USERS_LOGIN, useNavigate, BACKEND_ERROR, USERS_HOMEPAGE, LOGO_URL } from "../routes/routes.jsx";
 
 const ForgotPassword = () => {
   const [formData, setFormData] = useState({ email: '' });
@@ -44,25 +44,28 @@ const ForgotPassword = () => {
 
   return (
     <>
-      <div className="min-h-screen min-w-full flex flex-col items-center justify-center text-white bg-gradient-to-b from-gray-950 to-gray-900 md:py-10">
-        <div className="w-full max-w-3xl p-6 sm:px-52 sm:py-32 border-2 border-gray-400 rounded-2xl bg-black/35 shadow-xl shadow-gray-600 overflow-y-auto">
+      <div className="min-h-screen min-w-full flex flex-col items-center pt-20 p-6">
+        <div className="w-full max-w-96 overflow-y-auto">
           <div className="mb-8 sm:mb-12">
+            <NavLink to={USERS_HOMEPAGE} className="flex items-center justify-center space-x-3 rtl:space-x-reverse">
+              <img src={LOGO_URL} className="h-32 rounded-full w-32 mb-4" alt="Flowbite Logo" />
+            </NavLink>
             <div className="text-4xl sm:text-4xl font-medium mb-8 text-center">
-              <h1>Login to MelodyHub</h1>
+              <h1>Reset your password</h1>
             </div>
+            <p>Enter the email address linked to your Spotify account and we&apos;ll send you an email.</p>
           </div>
-          <hr />
           <div className="mt-8 sm:mt-12">
             <form onSubmit={submitForgotPasswordForm}>
               <div className="email mb-4">
                 <InputField label_heading="Email" id="email" name="email" className="w-full" placeholder="Enter your email" div_name="email" value={formData.email} onChange={handleInputChange} error={errors.email} />
               </div>
               <div>
-                <SubmitButton name="forgot_password" id="forgot_password" className="w-full" div_name="submit" label="Forgot Password" disabled={disabled} onClick={handleClick}/>
+                <SubmitButton name="forgot_password" id="forgot_password" className="w-full" div_name="submit" label="Send Link" disabled={disabled} onClick={handleClick}/>
               </div>
             </form>
             <div>
-              <p className="text-center pb-5 pt-2"><NavLink to={USERS_LOGIN} className="underline ml-1">Login here.</NavLink></p>
+              <p className="text-center pb-5 pt-4"><NavLink to={USERS_LOGIN} className="underline ml-1">Back to login.</NavLink></p>
             </div>
           </div>
         </div>

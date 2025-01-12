@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { InputField, PasswordField, SubmitButton, validate_signup_submit_form, axios, BACKEND_SIGNUP, toast, NavLink, USERS_LOGIN, useNavigate, USERS_HOMEPAGE, ADMIN_HOMEPAGE, BACKEND_ERROR } from "../routes/routes.jsx";
+import { InputField, PasswordField, SubmitButton, validate_signup_submit_form, axios, BACKEND_SIGNUP, toast, NavLink, USERS_LOGIN, useNavigate, USERS_HOMEPAGE, ADMIN_HOMEPAGE, BACKEND_ERROR, LOGO_URL } from "../routes/routes.jsx";
 
 const Signup = () => {
   const [formData, setFormData] = useState({ name: '', email: '', mobile_number: '', password: '', confirm_password: '' });
@@ -18,7 +18,7 @@ const Signup = () => {
 
   const submitLoginForm = async (e) => {
     e.preventDefault();
-    const validation_errors = validate_signup_submit_form(formData);    
+    const validation_errors = validate_signup_submit_form(formData);
     if (Object.keys(validation_errors).length === 0) {
       try {
         setDisabled(true);
@@ -44,9 +44,12 @@ const Signup = () => {
 
   return (
     <>
-      <div className="min-h-screen min-w-full flex flex-col items-center justify-center text-white bg-gradient-to-b from-gray-950 to-gray-900 md:py-10">
-        <div className="w-full max-w-3xl p-6 sm:px-32 sm:py-24 border-2 border-gray-400 rounded-2xl bg-black/35 shadow-xl shadow-gray-600 overflow-y-auto">
+      <div className="min-h-screen min-w-full flex flex-col items-center pt-20 p-6">
+        <div className="w-full max-w-lg overflow-y-auto">
           <div className="mb-8 sm:mb-12">
+            <NavLink to={USERS_HOMEPAGE} className="flex items-center justify-center space-x-3 rtl:space-x-reverse">
+              <img src={LOGO_URL} className="h-32 rounded-full w-32 mb-4" alt="Flowbite Logo" />
+            </NavLink>
             <div className="text-5xl sm:text-5xl font-medium mb-8 text-center">
               <h1>Sign up to start listening</h1>
             </div>
@@ -76,7 +79,7 @@ const Signup = () => {
                 </div>
               </div>
               <div>
-                <SubmitButton name="signup" id="signup" className="w-full" div_name="submit" label="Signup" disabled={disabled} onClick={handleClick}/>
+                <SubmitButton name="signup" id="signup" className="w-full" div_name="submit" label="Signup" disabled={disabled} onClick={handleClick} />
               </div>
             </form>
             <div>
