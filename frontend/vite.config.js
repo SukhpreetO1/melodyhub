@@ -9,6 +9,9 @@ dotenv.config();
 export default defineConfig({
   plugins: [react()],
   server: {
+    host: '0.0.0.0',
+    port: 5173,
+    hmr: { host: 'localhost',},
     proxy: {
       "/api/" : {
         target : process.env.VITE_BACKEND_URL,

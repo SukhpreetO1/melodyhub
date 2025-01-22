@@ -1,10 +1,11 @@
-import { Navbar, Sidebar } from "../../routes/routes.jsx";
+import { Footer, Navbar, Sidebar } from "../../routes/routes.jsx";
 
 const Homepage = () => {
   return (
-    <div className="bg-[#000]">
+    <div>
       <Navbar />
       <Sidebar />
+      <Footer />
     </div>
   )
 }

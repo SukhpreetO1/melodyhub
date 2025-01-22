@@ -10,13 +10,13 @@ const Navbar = () => {
 
     return (
         <nav className="static top-0 w-full">
-            <div className="flex flex-wrap items-center justify-between mx-auto p-4 pt-2 bg-[#000]">
-                <NavLink to={USERS_HOMEPAGE} className="flex items-center space-x-3 rtl:space-x-reverse">
+            <div className="flex flex-wrap items-center justify-between mx-auto p-4 pt-2">
+                <NavLink to={USERS_HOMEPAGE} className="flex items-center space-x-3 rtl:space-x-reverse" title="MelodyHub">
                     <img src={LOGO_URL} className="h-12 rounded-full w-12" alt="Flowbite Logo" />
                 </NavLink>
                 <div className="flex md:order-1">
                     <span className="w-11 bg-[#1f1f1f] rounded-full mr-2 text-center cursor-pointer pt-2 hidden md:block">
-                        <NavLink to={USERS_HOMEPAGE}>
+                        <NavLink to={USERS_HOMEPAGE} title="Home">
                             <FontAwesomeIcon icon={faHouse} className="text-lg" />
                         </NavLink>
                     </span>
@@ -29,7 +29,7 @@ const Navbar = () => {
                         </div>
                         <input type="text" id="search-navbar" className="block w-96 p-2 ps-10 pe-14 rounded-full bg-[#1f1f1f]" placeholder="What do you want to play?" />
                         <div className="absolute inset-y-0 end-0 flex items-center pe-3 text-[#818181] border-l-2 border-[#818181] pl-3">
-                            <NavLink to="#">
+                            <NavLink to="#" title="Browse">
                                 <FontAwesomeIcon icon={faInbox} className="text-xl" />
                             </NavLink>
                         </div>
@@ -55,7 +55,7 @@ const Navbar = () => {
                             <NavLink to={USERS_SIGNUP} className="block py-2 px-3 md:border-0 text-gray-300 md:hover:text-white border-b-2" aria-current="page">Sign up</NavLink>
                         </li>
                         <li>
-                            <NavLink to={USERS_LOGIN} className="block py-2 px-3 md:border-0 md:hover:bg-gray-200 border-b-2 md:bg-white md:text-black md:rounded-full md:w-24 md:text-center md:font-bold">Login</NavLink>
+                            <NavLink to={USERS_LOGIN} className="block py-2 px-3 md:border-0 border-b-2 md:bg-white md:text-black md:rounded-full md:w-24 md:text-center md:font-bold hover:scale-110 transition duration-200 ease-in-out">Login</NavLink>
                         </li>
                     </ul>
                 </div>

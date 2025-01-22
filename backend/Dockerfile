@@ -7,11 +7,11 @@ WORKDIR /var/www/html/personal/melodyhub/backend
 # Copy package.json first
 COPY package.json ./
 
-# Install the dependencies
-RUN npm install
-
 # Copy the rest of the application files
 COPY . .
+
+# Install the dependencies
+RUN npm install
 
 # Expose the port the app will run on
 EXPOSE 5000

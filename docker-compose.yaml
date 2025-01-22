@@ -9,7 +9,7 @@ services:
     volumes:
       - ./frontend:/var/www/html/personal/melodyhub/frontend
     ports:
-      - "3000:80"
+      - "6010:5173"
     depends_on:
       - melodyhub_backend
     networks:
@@ -27,9 +27,7 @@ services:
     volumes:
       - ./backend:/var/www/html/personal/melodyhub/backend
     ports:
-      - "6006:6006"
-    environment:
-      - MONGO_URI=${MONGO_URI}
+      - "5010:5000"
     networks:
       - mysql_database
     env_file:

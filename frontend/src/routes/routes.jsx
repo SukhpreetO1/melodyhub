@@ -16,6 +16,7 @@ import Signup from '../pages/Signup.jsx';
 import ForgotPassword from '../pages/ForgotPassword.jsx';
 import Navbar from '../pages/Navbar.jsx';
 import Sidebar from '../pages/users/Sidebar.jsx';
+import Footer from '../pages/users/Footer.jsx';
 import AdminHomepage from '../pages/admin/AdminHomepage.jsx';
 
 // importing interfaces
@@ -68,6 +69,7 @@ export {
     ForgotPassword, 
     Navbar, 
     Sidebar, 
+    Footer, 
     AdminHomepage, 
     AuthRoutePropType, 
     SubmitButtonPropTypes, 
@@ -93,4 +95,6 @@ export {
     ADMIN_HOMEPAGE, 
     AuthRoute, 
 };
-export const LOGO_URL = '../../public/images/logo.png';
+
+// Exporting all the images 
+export const LOGO_URL = '/images/logo.png';

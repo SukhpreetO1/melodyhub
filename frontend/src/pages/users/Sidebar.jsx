@@ -16,7 +16,7 @@ const Sidebar = () => {
                     <path clipRule="evenodd" fillRule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
                 </svg>
             </button>
-            <aside id="default-sidebar" className={`m-3 w-96 h-screen transition-transform ${isOpen ? 'transform-none' : '-translate-x-full'} sm:translate-x-0 bg-[#121111] rounded-lg`} aria-label="Sidebar">
+            <aside id="default-sidebar" className={`m-3 w-96 h-[80vh] mb-0 transition-transform ${isOpen ? 'transform-none' : '-translate-x-full'} sm:translate-x-0 bg-[#121111] rounded-lg`} aria-label="Sidebar">
                 <div className='flex justify-between'>
                     <div className='items-center p-4 text-xl text-[#818181] hover:text-white'>
                         <NavLink to="#" className='flex items-center' title="Collapse your library">
@@ -26,7 +26,7 @@ const Sidebar = () => {
                     </div>
                     <div className='items-center p-4 text-xl text-[#818181]'>
                         <NavLink to="#" title="Create playlist or folder">
-                            <FontAwesomeIcon icon={faPlus} className='hover:text-white' />
+                            <FontAwesomeIcon icon={faPlus} className='hover:text-white hover:border hover:border-gray-600 w-4 h-4 p-2 rounded-full' />
                         </NavLink>
                     </div>
                 </div>
