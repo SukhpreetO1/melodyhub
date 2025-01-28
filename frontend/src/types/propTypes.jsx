@@ -35,3 +35,7 @@ export const PasswordFieldPropTypes = {
 export const AuthRoutePropType = {
   children: PropTypes.any
 }
+
+export const AdminRoutePropType = {
+  children: PropTypes.any
+}

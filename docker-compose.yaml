@@ -12,10 +12,10 @@ services:
       - "6010:5173"
     depends_on:
       - melodyhub_backend
-    networks:
-      - mysql_database
     env_file:
       - ./frontend/.env  
+    networks:
+      - html_default
 
   melodyhub_backend:
     build:
@@ -28,11 +28,11 @@ services:
       - ./backend:/var/www/html/personal/melodyhub/backend
     ports:
       - "5010:5000"
-    networks:
-      - mysql_database
     env_file:
       - ./backend/.env  
+    networks:
+      - html_default
 
 networks:
-  mysql_database:
+  html_default:
     external: true 

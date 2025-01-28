@@ -7,6 +7,6 @@ router.post('/register', registerUser);
 router.post('/login', loginUser);
 router.post('/forgot_password', forgotPassword);
 router.get('/profile', isAuth, userProfile);
-router.get('/logout', isAuth, logoutUser);
+router.post('/logout', isAuth, logoutUser);
 
 export default router;

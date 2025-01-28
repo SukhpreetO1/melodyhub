@@ -1,10 +1,11 @@
-import { useState } from "react";
-import { InputField, PasswordField, SubmitButton, validate_login_submit_form, axios, BACKEND_LOGIN, toast, NavLink, USERS_SIGNUP, useNavigate, USERS_HOMEPAGE, ADMIN_HOMEPAGE, BACKEND_ERROR, USERS_FORGOT_PASSWORD, LOGO_URL } from "../routes/routes.jsx";
+import { useState, useContext } from "react";
+import { InputField, PasswordField, SubmitButton, validate_login_submit_form, axios, BACKEND_LOGIN, toast, NavLink, USERS_SIGNUP, useNavigate, USERS_HOMEPAGE, ADMIN_HOMEPAGE, BACKEND_ERROR, USERS_FORGOT_PASSWORD, LOGO_URL, EmailGlobalContext } from "../routes/routes.jsx";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({});
   const [disabled, setDisabled] = useState(false);
+  const { setEmail } = useContext(EmailGlobalContext);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -24,7 +25,8 @@ const Login = () => {
         setDisabled(true);
         const response = await axios.post(BACKEND_LOGIN, formData);
         setDisabled(false);
-        toast.success("Login successfully.")
+        toast.success("Login successfully.");
+        setEmail(response.data.user.email);
         response.data.roleName == "User" ? navigate(USERS_HOMEPAGE) : navigate(ADMIN_HOMEPAGE);
       }
       catch (err) {
@@ -53,7 +55,7 @@ const Login = () => {
             <div className="text-4xl sm:text-4xl font-medium mb-8 text-center">
               <h1>Login to MelodyHub</h1>
             </div>
-            <div>
+            <div className="w-80 ml-8">
               <button className="p-4 border-2 border-slate-400 rounded-full text-center hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/50 w-full sm:overflow-hidden">
                 Continue with phone number
               </button>

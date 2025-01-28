@@ -1,4 +1,4 @@
-import { axios, useNavigate, BACKEND_PROTETED_ROUTE, AuthRoutePropType } from "../routes/routes.jsx";
+import { axios, useNavigate, BACKEND_PROTECTED_ROUTE, AuthRoutePropType, getTokenFromCookie, USERS_HOMEPAGE } from "../routes/routes.jsx";
 import { useEffect, useState } from "react";
 
 const AuthRoute = ({ children }) => {
@@ -8,10 +8,12 @@ const AuthRoute = ({ children }) => {
   useEffect(() => {
     const checkToken = async () => {
       try {
-        const response = await axios.get(BACKEND_PROTETED_ROUTE, {
-          credentials: 'include',
+        const token = getTokenFromCookie('token');
+        const response = await axios.get(BACKEND_PROTECTED_ROUTE, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
         });
-        
         if (response.status == 200) {
           setHasToken(true);
         } else {
@@ -27,7 +29,7 @@ const AuthRoute = ({ children }) => {
 
   useEffect(() => {
     if (hasToken) {
-      navigate("/", { replace: true });
+      navigate(USERS_HOMEPAGE, { replace: true });
     }
   }, [hasToken, navigate]);
 
@@ -35,5 +37,4 @@ const AuthRoute = ({ children }) => {
 };
 
 AuthRoute.propTypes = AuthRoutePropType;
-
 export default AuthRoute;

@@ -11,10 +11,10 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 5173,
-    hmr: { host: 'localhost',},
     proxy: {
       "/api/" : {
-        target : process.env.VITE_BACKEND_URL,
+        // target : process.env.VITE_BACKEND_URL,
+        target : "http://melodyhub_backend:5000",
         changeOrigin: true,
       }
     }

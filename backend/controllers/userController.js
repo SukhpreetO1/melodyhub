@@ -37,7 +37,7 @@ export const registerUser = TryCatch(async (req, res) => {
         password: hashPassword,
     });
 
-    GenerateToken(user._id, res);
+    GenerateToken(user._id, res, "User");
 
     res.status(200).json({
         user, 
@@ -69,8 +69,7 @@ export const loginUser = TryCatch(async (req, res) => {
     })
 
     const roleName = await Role.findById(user.role_id);
-
-    GenerateToken(user._id, res);
+    GenerateToken(user._id, res, roleName.name);
 
     res.status(200).json({
         user, 
@@ -80,13 +79,17 @@ export const loginUser = TryCatch(async (req, res) => {
 });
 
 export const userProfile = TryCatch(async (req, res) => {
-    const user = await User.findById(req.user._id);
-    res.json (user);
+    const user = await User.findById(res.user._conditions._id);
+    res.status(200).json({
+        user,
+        message: "User Profile details fetched sucessfully."
+    });
 });
 
 export const logoutUser = TryCatch(async (req, res) => {
     res.cookie("token", "", { maxAge: 0 });
-    res.json({
+    res.cookie("admin_token", "", { maxAge: 0 });
+    res.status(200).json({
         message: "Logout sucessfully."
     });
 });

@@ -1,13 +1,55 @@
-import { useState } from "react";
-import { USERS_HOMEPAGE, NavLink, USERS_LOGIN, USERS_SIGNUP, FontAwesomeIcon, faHouse, faInbox, LOGO_URL } from "../routes/routes.jsx";
+import { useContext, useState } from "react";
+import { USERS_HOMEPAGE, NavLink, USERS_LOGIN, USERS_SIGNUP, FontAwesomeIcon, faHouse, faInbox, LOGO_URL, getTokenFromCookie, USERS_PROFILE, USERS_LOGOUT, axios, toast, BACKEND_ERROR, useNavigate, BACKEND_LOGOUT, BACKEND_PROFILE, EmailGlobalContext } from "../routes/routes.jsx";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const navigate = useNavigate();
+    const { email, setEmail } = useContext(EmailGlobalContext);    
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
     };
 
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+    };   
+
+    const handleLogout = async () => {
+        try {
+            const response = await axios.post(BACKEND_LOGOUT);
+            if (response.status == 200) {
+                localStorage.removeItem('email');
+                setEmail('');
+                document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
+                toast.success("Logout successfully.")
+                navigate(USERS_HOMEPAGE);
+            }
+        } catch (err) {
+            toast.error("Unable to logout. Please try again after some time.");
+            const errorData = {
+                error: err.message,
+                message: `Logout Error : Unable to logout. ${err.message}`,
+                timestamp: new Date().toISOString()
+            };
+            axios.post(BACKEND_ERROR, errorData);
+        }
+    }
+
+    const handleUserProfile = async () => {
+        try {
+            const response = await axios.get(BACKEND_PROFILE);
+            if (response.status == 200) {
+                navigate(USERS_PROFILE);
+            }
+        } catch (err) {
+            const errorData = {
+                error: err.message,
+                message: `User Profile Error : Unable to fetch User Profile. ${err.message}`,
+                timestamp: new Date().toISOString()
+            };
+            axios.post(BACKEND_ERROR, errorData);
+        }
+    }
     return (
         <nav className="static top-0 w-full">
             <div className="flex flex-wrap items-center justify-between mx-auto p-4 pt-2">
@@ -51,12 +93,28 @@ const Navbar = () => {
                         <input type="text" id="search-navbar" className="block w-full p-2 ps-10 text-sm rounded-lg bg-transparent" placeholder="What do you want to play?" />
                     </div>
                     <ul className="flex flex-col p-4 md:p-0 font-medium md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0">
-                        <li>
-                            <NavLink to={USERS_SIGNUP} className="block py-2 px-3 md:border-0 text-gray-300 md:hover:text-white border-b-2" aria-current="page">Sign up</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to={USERS_LOGIN} className="block py-2 px-3 md:border-0 border-b-2 md:bg-white md:text-black md:rounded-full md:w-24 md:text-center md:font-bold hover:scale-110 transition duration-200 ease-in-out">Login</NavLink>
-                        </li>
+                        { getTokenFromCookie('token') || getTokenFromCookie('admin_token') ? ( 
+                            <div className="relative h-28 md:h-0">
+                                <div className="hidden md:flex -space-x-2 overflow-hidden cursor-pointer" onClick={toggleDropdown}>
+                                    <img alt="" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" className="inline-block size-10 rounded-full ring-2 ring-white pointer-events-none" />
+                                </div>
+                                {isOpen && (
+                                    <div className="absolute top-0 bg-transparent w-full mb-8 md:mb-0 right-0 z-10 md:top-14 md:w-64 rounded-md md:bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dropdown-menu">
+                                        <ul className="py-2">
+                                            <li className="py-2 px-4 text-white bg-inherit md:text-black border-b-2 border-b-gray-400">Signed in as {email}</li>
+                                            <NavLink to={USERS_PROFILE} onClick={handleUserProfile}><li className="py-2 px-4 text-white bg-inherit md:hover:bg-gray-200 md:text-black">Account Settings</li></NavLink>
+                                            <NavLink to={USERS_LOGOUT} onClick={handleLogout}><li className="py-2 px-4 text-white bg-inherit md:hover:bg-gray-200 md:text-black">Sign Out</li></NavLink>
+                                        </ul>
+                                    </div>
+                                )}
+                            </div>
+                        )
+                        : (
+                            <>
+                                <li><NavLink to={USERS_SIGNUP} className="block py-2 px-3 md:border-0 text-gray-300 md:hover:text-white border-b-2" aria-current="page">Sign up</NavLink></li>
+                                <li><NavLink to={USERS_LOGIN} className="block py-2 px-3 md:border-0 border-b-2 md:bg-white md:text-black md:rounded-full md:w-24 md:text-center md:font-bold hover:scale-110 transition duration-200 ease-in-out">Login</NavLink></li>
+                            </>
+                        ) }
                     </ul>
                 </div>
             </div>
